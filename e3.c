@@ -44,20 +44,22 @@ int main(int argc, char *argv[])
         int right_node = (rank + 1) % size;
         // int MPI_Send(const void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)
         // [1,2,3,4,5,6,8,8,9,10]
-        MPI_Send(&f[1], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD);
-        MPI_Recv(&f[0], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        MPI_Send(&f[nxn_loc - 2], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD);
-        MPI_Recv(&f[nxn_loc - 1], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        MPI_Request reqs[4];
+        MPI_Isend(&f[1], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD, &reqs[0]);
+        MPI_Irecv(&f[0], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD, &reqs[1]);
+        MPI_Isend(&f[nxn_loc - 2], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD, &reqs[2]);
+        MPI_Irecv(&f[nxn_loc - 1], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD, &reqs[3]);
     }
     else
     {
         // even numbered
         int left_node = (rank - 1 + size) % size;
         int right_node = (rank + 1) % size;
-        MPI_Recv(&f[nxn_loc - 1], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        MPI_Send(&f[nxn_loc - 2], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD);
-        MPI_Recv(&f[0], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        MPI_Send(&f[1], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD);
+        MPI_Request reqs[4];
+        MPI_Irecv(&f[nxn_loc - 1], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD, &reqs[0]);
+        MPI_Isend(&f[nxn_loc - 2], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD, &reqs[1]);
+        MPI_Irecv(&f[0], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD, &reqs[2]);
+        MPI_Isend(&f[1], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD, &reqs[3]);
     }
 
     // here we finish the calculations

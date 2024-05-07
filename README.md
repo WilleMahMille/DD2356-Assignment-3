@@ -52,5 +52,7 @@
     ✅
 - Test the results by checking the correct values are on the ghost cells and the derivative of sin(x) on the edges of the domain is correct (the derivative of sin(x) is cos(x)). Show that your code produce the correct results (especially at the ghost cells).
 
+  - By checking the output and error to a cos-function call, we can see that the results are correct.
+
 - Why MPI_Send and MPI_Recv are called "blocking "communication?
-  It's called blocking communicationg since there is no wait time from the point of sending the data to receiving it, both processes wait until all data has been transfered, the alternative that is slowe would be having a local buffer that would act as middleware.
+  - It's called blocking communicationg since there is no wait time from the point of sending the data to receiving it, both processes wait until all data has been transfered, the alternative that is slowe would be having a local buffer that would act as middleware.
