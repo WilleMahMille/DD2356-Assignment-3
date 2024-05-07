@@ -54,10 +54,10 @@ int main(int argc, char *argv[])
         // even numbered
         int left_node = (rank - 1 + size) % size;
         int right_node = (rank + 1) % size;
-        MPI_Recv(&f[0], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        MPI_Send(&f[1], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD);
-        MPI_Recv(&f[nxn_loc - 1], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        MPI_Send(&f[nxn_loc - 2], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD);
+        MPI_Recv(&f[nxn_loc - 1], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        MPI_Send(&f[nxn_loc - 2], 1, MPI_DOUBLE, right_node, 0, MPI_COMM_WORLD);
+        MPI_Recv(&f[0], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        MPI_Send(&f[1], 1, MPI_DOUBLE, left_node, 0, MPI_COMM_WORLD);
     }
 
     // here we finish the calculations
