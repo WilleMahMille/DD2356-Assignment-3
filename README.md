@@ -47,7 +47,10 @@
 
 - Assume periodic boundary conditions, e.g. the first and last process will communicate. Implement the communication for the 1D domain decomposition using
   - MPI blocking point-to-point communication.
+    ✅
   - MPI non-blocking point-to-point communication.
+    ✅
 - Test the results by checking the correct values are on the ghost cells and the derivative of sin(x) on the edges of the domain is correct (the derivative of sin(x) is cos(x)). Show that your code produce the correct results (especially at the ghost cells).
-  - Why MPI_Send and MPI_Recv are called "blocking "communication?
-    It's called blocking communicationg since there is no wait time from the point of sending the data to receiving it, both processes wait until all data has been transfered, the alternative that is slowe would be having a local buffer that would act as middleware.
+
+- Why MPI_Send and MPI_Recv are called "blocking "communication?
+  It's called blocking communicationg since there is no wait time from the point of sending the data to receiving it, both processes wait until all data has been transfered, the alternative that is slowe would be having a local buffer that would act as middleware.

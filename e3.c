@@ -71,9 +71,9 @@ int main(int argc, char *argv[])
     if (rank == 0)
     { // print only rank 0 for convenience
         printf("My rank %d of %d\n", rank, size);
-        printf("Here are my values for f including ghost cells\n");
+        printf("Here are my values for f including ghost cells and the corresponding errors (ignore first and last 2)\n");
         for (i = 0; i < nxn_loc; i++)
-            printf("%f\n", f[i]);
+            printf("%f, err:%f\n", f[i], dfdx[i] - cos(L_loc * rank + (i - 1) * dx));
         printf("\n");
     }
 
