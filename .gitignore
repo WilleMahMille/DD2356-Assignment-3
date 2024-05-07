@@ -1,0 +1,8 @@
+*.gz
+mpich-4.2.1/*
+
+*.log
+
+lib
+modules
+src
