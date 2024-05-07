@@ -2,8 +2,17 @@
 
 e1-send:
 	scp e1.c wija@dardel.pdc.kth.se:~/Private/a3/e1.c
-bat-send:
-	scp batch.sh wija@dardel.pdc.kth.se:~/Private/a3/batch.sh
+e1-batch:
+	scp e1.sh wija@dardel.pdc.kth.se:~/Private/a3/e1.sh
 e1-run:
 	scp e1.c wija@dardel.pdc.kth.se:~/Private/a3/e1.c && \
-	ssh wija@dardel.pdc.kth.se 'cd ~/Private/a3 && rm slurm* && cc -o e1.out e1.c && sbatch batch.sh'
+	ssh wija@dardel.pdc.kth.se 'cd ~/Private/a3 && rm slurm* && cc -o e1.out e1.c && sbatch e1.sh'
+
+e2-send:
+	scp e2.c
+e2-batch:
+	scp e2.sh wija@dardel.pdc.kth.se:~/Private/a3/e2.sh
+e2-run:
+	scp e2.c wija@dardel.pdc.kth.se:~/Private/a3/e2.c && \
+	scp e2.sh wija@dardel.pdc.kth.se:~/Private/a3/e2.sh && \
+	ssh wija@dardel.pdc.kth.se 'cd ~/Private/a3 && rm slurm* -f && cc -o e2.out e2.c && sbatch e2.sh'
