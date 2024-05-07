@@ -28,4 +28,25 @@
   ![](./e2-2.png)
 
 - Using best fit (using Matlab, Python, or similar), calculate the bandwidth and latency for 1) and 2).
-  Hint: if you obtain a negative number for latency, you can omit the ping-pong times for small message sizes. In fact, the measurements for small messages are quite noisy.`
+  Hint: if you obtain a negative number for latency, you can omit the ping-pong times for small message sizes. In fact, the measurements for small messages are quite noisy.`  
+  **First dataset:**
+
+  - Latency:
+    96.607 microseconds
+  - Bandwidth:
+    16.739 GB/s
+
+  **Second dataset:**
+
+  - Latency:
+    181.31 microseconds
+  - Bandwidth:
+    22.664 GB/s
+
+## Excercise 3
+
+- Assume periodic boundary conditions, e.g. the first and last process will communicate. Implement the communication for the 1D domain decomposition using
+  - MPI blocking point-to-point communication.
+  - MPI non-blocking point-to-point communication.
+- Test the results by checking the correct values are on the ghost cells and the derivative of sin(x) on the edges of the domain is correct (the derivative of sin(x) is cos(x)). Show that your code produce the correct results (especially at the ghost cells).
+  - Why MPI_Send and MPI_Recv are called "blocking "communication?
