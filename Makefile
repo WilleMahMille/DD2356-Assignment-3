@@ -25,3 +25,14 @@ e3-run:
 	scp e3.c wija@dardel.pdc.kth.se:~/Private/a3/e3.c && \
 	scp e3.sh wija@dardel.pdc.kth.se:~/Private/a3/e3.sh && \
 	ssh wija@dardel.pdc.kth.se 'cd ~/Private/a3 && rm slurm* -f && cc -o e3.out e3.c && sbatch e3.sh'
+
+e4-send:
+	scp e4.c wija@dardel.pdc.kth.se:~/Private/a3/e4.c
+e4-batch:
+	scp e4.sh wija@dardel.pdc.kth.se:~/Private/a3/e4.sh
+e4-run:
+	scp e4.c wija@dardel.pdc.kth.se:~/Private/a3/e4.c && \
+	scp e4.sh wija@dardel.pdc.kth.se:~/Private/a3/e4.sh && \
+	ssh wija@dardel.pdc.kth.se 'cd ~/Private/a3 && rm slurm* -f && cc -o e4.out e4.c && sbatch e4.sh'
+e4-print:
+	ssh wija@dardel.pdc.kth.se 'cat ~/Private/a3/output4.txt'

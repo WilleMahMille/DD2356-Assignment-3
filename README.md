@@ -56,3 +56,10 @@
 
 - Why MPI_Send and MPI_Recv are called "blocking "communication?
   - It's called blocking communicationg since there is no wait time from the point of sending the data to receiving it, both processes wait until all data has been transfered, the alternative that is slowe would be having a local buffer that would act as middleware.
+
+## Excercise 4
+
+- Implement the code using `MPI_Reduce`
+  ✅
+- Measure the performance of the code (execution time) for 8, 16, 32, 64, 128 (and possibly 256) MPI processes and plot it.
+  ![](./e4.png)
